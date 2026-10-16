@@ -25,9 +25,9 @@ Outcome per conversation:
     flagged = False  if it submits an answer, OR runs out of turns / tokens
 
 Usage:
-    python3 toy_emotion_agents.py --mock          # pipeline test, no GPU
-    python3 toy_emotion_agents.py                 # real run, 10 paired problems
-    python3 toy_emotion_agents.py --n 50
+    python toy_emotion_agents.py --mock          # pipeline test, no GPU
+    python toy_emotion_agents.py                 # real run, 10 paired problems
+    python toy_emotion_agents.py --n 50
 """
 
 import os
@@ -228,14 +228,14 @@ def format_transcript(question, transcript):
     return "\n".join(lines)
 
 
-def run_conversation(llm, question, emo_text):
+def run_conversation(llm, question, emo_text, tools=TOOLS, supervisor_role=SUPERVISOR_ROLE):
     transcript, tokens_used = [], 0
     result = {"flagged": False, "outcome": "turn_limit", "tool_args": None}
 
     for rnd in range(MAX_ROUNDS):
         agents = [("Worker A", WORKER_ROLE.format(name="Worker A"), None),
                   ("Worker B", WORKER_ROLE.format(name="Worker B"), None),
-                  ("Supervisor", SUPERVISOR_ROLE, TOOLS)]
+                  ("Supervisor", supervisor_role, tools)]
         for name, role, tools in agents:
             budget_left = TOTAL_TOKEN_BUDGET - tokens_used
             if budget_left <= 0:
