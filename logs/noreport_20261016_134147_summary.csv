@@ -1,0 +1,7 @@
+condition,dataset,n,submitted,hit_limit,judge_abstained,judge_unparsed,keyword_final,keyword_anywhere
+neutral,gsm8k,10,1.0,0.0,0.0,0,0.0,0.0
+neutral,abstention,10,1.0,0.0,0.4,0,0.3,0.5
+sadness,gsm8k,10,1.0,0.0,0.0,0,0.0,0.1
+sadness,abstention,10,1.0,0.0,0.4,0,0.1,0.4
+neuroticism,gsm8k,10,1.0,0.0,0.2,0,0.1,0.3
+neuroticism,abstention,10,1.0,0.0,1.0,0,0.6,0.7
